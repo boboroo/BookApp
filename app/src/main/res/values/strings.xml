@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Book App</string>
+
+    <string name="search_hint">Please enter your search word</string>
+    <string name="submit">SUBMIT</string>
+    <string name="search_fail">Search failed</string>
+    <string name="no_search_data">No search results</string>
+
+    <string name="internet_connection">Network communication is temporarily unavailable</string>
+    <string name="unstable_internet_connection">Internet connection is unstable</string>
+    <string name="unauthorized">User authentication required</string>
+    <string name="server_fail">Sorry. It is currently in preparation.</string>
 </resources>

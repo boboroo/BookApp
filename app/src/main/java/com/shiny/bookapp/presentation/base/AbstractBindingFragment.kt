@@ -1,4 +1,4 @@
-package com.shiny.mysearch.presentation.base
+package com.shiny.bookapp.presentation.base
 
 import android.content.Context
 import android.os.Bundle
@@ -14,7 +14,7 @@ import com.orhanobut.logger.Logger
 abstract class AbstractBindingFragment<B: ViewDataBinding> : Fragment() {
 
     private lateinit var _binding: B
-    protected val binding get() = _binding!!
+    protected val binding get() = _binding
 
     protected abstract fun getResourceId() : Int
 

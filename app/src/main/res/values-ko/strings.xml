@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">도서 앱</string>
+
+    <string name="search_hint">검색어를 입력하세요</string>
+    <string name="submit">검색</string>
+    <string name="search_fail">검색에 실패했습니다</string>
+    <string name="no_search_data">검색 결과가 존재하지 않습니다</string>
+
+    <string name="internet_connection">네트워크 통신이 일시적으로 원활하지 않습니다</string>
+    <string name="unstable_internet_connection">인터넷 연결이 불안정합니다</string>
+    <string name="unauthorized">사용자 인증이 필요합니다</string>
+    <string name="server_fail">죄송합니다. 현재 준비중인 상태입니다.</string>
 </resources>

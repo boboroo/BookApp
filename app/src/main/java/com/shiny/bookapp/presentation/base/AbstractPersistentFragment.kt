@@ -1,4 +1,4 @@
-package com.shiny.mysearch.presentation.base
+package com.shiny.bookapp.presentation.base
 
 import android.os.Bundle
 import android.view.View
