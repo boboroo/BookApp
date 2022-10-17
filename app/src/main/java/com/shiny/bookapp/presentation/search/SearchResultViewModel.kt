@@ -61,7 +61,7 @@ class SearchResultViewModel @Inject constructor(
     }
 
 
-    fun setQuery(keyword: String, force: Boolean = false) {
+    fun setQuery(keyword: String, force: Boolean = searchResults.value is UiEvent.Error) {
         if (!force && !shouldShowSearchResults(keyword)) {
             return
         }
@@ -88,7 +88,7 @@ class SearchResultViewModel @Inject constructor(
 
     override fun loadApi() {
         val keyword: String = savedStateHandle.get<String>(LAST_API_KEYWORD_KEY) ?: return
-        setQuery(keyword, !keyword.isBlank())
+        setQuery(keyword, force = !keyword.isBlank())
     }
 
 }

@@ -57,11 +57,11 @@ class SearchFragment : AbstractPersistentFragment<FragmentSearchBinding, Abstrac
 
     private fun initSearch() {
         binding.btnSubmit.setOnClickListener {
-            updatedKeywordFromInput()
+            updateKeyword()
         }
         binding.inputKeyword.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_GO) {
-                updatedKeywordFromInput()
+                updateKeyword()
                 true
             } else {
                 false
@@ -69,7 +69,7 @@ class SearchFragment : AbstractPersistentFragment<FragmentSearchBinding, Abstrac
         }
         binding.inputKeyword.setOnKeyListener { _, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                updatedKeywordFromInput()
+                updateKeyword()
                 true
             } else {
                 false
@@ -78,14 +78,17 @@ class SearchFragment : AbstractPersistentFragment<FragmentSearchBinding, Abstrac
     }
 
 
-    private fun updatedKeywordFromInput(forceQuery: Boolean = false) {
-        binding.inputKeyword.text?.trim().toString().let { keyword ->
+    private fun updateKeyword() {
+        getKeyword().let { keyword ->
             if (keyword.isNotBlank()) {
                 showSoftKeyboard(false) // 사용자에게 검색된 결과가 잘 보여지도록 키보드를 내림
-                viewModel.setQuery(keyword, forceQuery)
+                viewModel.setQuery(keyword)
             }
         }
     }
+
+
+    private fun getKeyword() = binding.inputKeyword.text?.trim().toString()
 
 
     private fun showSoftKeyboard(show: Boolean) {
@@ -131,7 +134,7 @@ class SearchFragment : AbstractPersistentFragment<FragmentSearchBinding, Abstrac
                         // FIXME retry dialog로 변경하기
                         binding.txtResponse.setOnClickListener { v ->
                             Logger.d("Retry")
-                            updatedKeywordFromInput(true)
+                            viewModel.setQuery(getKeyword())
                         }
                     }
                 }
