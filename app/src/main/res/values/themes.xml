@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
     <style name="Theme.BookApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
@@ -16,4 +17,19 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+
+    <style name="BaseBottomSheetDialog" parent="BottomSheetDialogTheme">
+        <item name="android:windowIsFloating">false</item> <!-- BottomSheetDialog를 띄우면 System navigation bar가 투명해지는걸 방지 -->
+        <!-- show/hide 애니메이션 제거 <item name="android:windowAnimationStyle">@null</item>-->
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/border_top_round</item>
+    </style>
+
 </resources>
