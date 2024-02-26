@@ -1,7 +1,12 @@
-package com.shiny.bookapp.domain.network
+package com.shiny.bookapp.data.network
 
 import com.shiny.bookapp.MyApplication
 import com.shiny.bookapp.R
+import com.shiny.bookapp.domain.network.ErrorHandler
+import com.shiny.bookapp.domain.network.NetworkConnectionException
+import com.shiny.bookapp.domain.network.ServerFailException
+import com.shiny.bookapp.domain.network.UnauthorizedException
+import com.shiny.bookapp.domain.network.UnknownException
 import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException

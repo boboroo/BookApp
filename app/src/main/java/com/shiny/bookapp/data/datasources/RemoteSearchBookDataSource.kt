@@ -3,9 +3,8 @@ package com.shiny.bookapp.data.datasources
 import com.shiny.bookapp.data.api.SearchApi
 import com.shiny.bookapp.data.models.BookResponse
 import com.shiny.bookapp.data.models.SearchResponse
+import com.shiny.bookapp.data.network.networkHandling
 import com.shiny.bookapp.domain.network.ResultData
-import com.shiny.bookapp.util.networkHandling
-import javax.inject.Inject
 
 class RemoteSearchBookDataSource(
     private val searchApi: SearchApi

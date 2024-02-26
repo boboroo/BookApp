@@ -1,4 +1,4 @@
-package com.shiny.bookapp.util
+package com.shiny.bookapp.data.network
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -6,7 +6,6 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import com.orhanobut.logger.Logger
 import com.shiny.bookapp.MyApplication
-import com.shiny.bookapp.domain.network.DefaultErrorHandler
 import com.shiny.bookapp.domain.network.ErrorHandler
 import com.shiny.bookapp.domain.network.ResultData
 import kotlinx.coroutines.Dispatchers
@@ -62,27 +61,11 @@ fun isNetworkState(): Boolean {
 }
 
 
-suspend fun <T, R> ResultData<T>.mapNetworkResult(convertData: suspend (T) -> R): ResultData<R> {
-    return when (this) {
-        is ResultData.Success -> ResultData.Success(map(convertData))
-        is ResultData.Fail -> ResultData.Fail(this.exception)
-    }
-}
-
-
-suspend inline fun <T, R> ResultData<T>.map(convertData: suspend (T) -> R): R =
-    convertData(toData())
-
-
-fun <T> ResultData<T>.toData(): T {
-    return when (this) {
-        is ResultData.Success -> this.data
-        is ResultData.Fail -> throw this.exception
-    }
-}
-
-
-suspend fun <T> networkHandling(retry: Int = 0, errorHandler: ErrorHandler = DefaultErrorHandler, block: suspend () -> T): ResultData<T> {
+suspend fun <T> networkHandling(
+    retry: Int = 0,
+    errorHandler: ErrorHandler = DefaultErrorHandler,
+    block: suspend () -> T
+): ResultData<T> {
 
     return try {
         if (!isNetworkState()) {
