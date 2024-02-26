@@ -8,7 +8,6 @@ import com.orhanobut.logger.Logger
 import com.shiny.bookapp.MyApplication
 import com.shiny.bookapp.domain.network.DefaultErrorHandler
 import com.shiny.bookapp.domain.network.ErrorHandler
-import com.shiny.bookapp.domain.network.NetworkConnectionException
 import com.shiny.bookapp.domain.network.ResultData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -72,10 +71,10 @@ suspend fun <T, R> ResultData<T>.mapNetworkResult(convertData: suspend (T) -> R)
 
 
 suspend inline fun <T, R> ResultData<T>.map(convertData: suspend (T) -> R): R =
-    convertData(toModel())
+    convertData(toData())
 
 
-fun <T> ResultData<T>.toModel(): T {
+fun <T> ResultData<T>.toData(): T {
     return when (this) {
         is ResultData.Success -> this.data
         is ResultData.Fail -> throw this.exception
@@ -104,6 +103,6 @@ suspend fun <T> networkHandling(retry: Int = 0, errorHandler: ErrorHandler = Def
             return networkHandling(retry = retry + 1, errorHandler = errorHandler) { block() }
         }
 
-        return ResultData.Fail(errorHandler.getError(e))
+        return ResultData.Fail(errorHandler.getServiceError(e))
     }
 }

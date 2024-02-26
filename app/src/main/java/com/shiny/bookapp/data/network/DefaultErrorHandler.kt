@@ -8,7 +8,7 @@ import java.net.SocketTimeoutException
 
 object DefaultErrorHandler: ErrorHandler {
 
-    override fun getError(exception: Exception): Exception {
+    override fun getServiceError(exception: Exception): Exception {
         val resources = MyApplication.context.resources
 
         return when (exception) {
